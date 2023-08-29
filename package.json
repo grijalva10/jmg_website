@@ -1,0 +1,22 @@
+{
+  "name": "jmg_website",
+  "version": "1.0.0",
+  "description": "portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cd frontend && yarn dev",
+    "build": "cd frontend && yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grijalva10/jmg_website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grijalva10/jmg_website/issues"
+  },
+  "homepage": "https://github.com/grijalva10/jmg_website#readme"
+}
