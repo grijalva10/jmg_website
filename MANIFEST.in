@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include jmg_website *.css
+recursive-include jmg_website *.csv
+recursive-include jmg_website *.html
+recursive-include jmg_website *.ico
+recursive-include jmg_website *.js
+recursive-include jmg_website *.json
+recursive-include jmg_website *.md
+recursive-include jmg_website *.png
+recursive-include jmg_website *.py
+recursive-include jmg_website *.svg
+recursive-include jmg_website *.txt
+recursive-exclude jmg_website *.pyc
