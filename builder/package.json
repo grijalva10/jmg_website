@@ -1,22 +1,22 @@
 {
-  "name": "frontend",
+  "name": "builder",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/assets/jmg_website/frontend/ && yarn copy-html-entry",
+    "build": "vite build --base=/assets/jmg_website/builder/ && yarn copy-html-entry",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "copy-html-entry": "cp ../jmg_website/public/frontend/index.html ../jmg_website/www/frontend.html"
+    "copy-html-entry": "cp ../jmg_website/public/builder/index.html ../jmg_website/www/builder.html"
   },
   "dependencies": {
+    "@builder.io/react": "^3.0.13",
     "@emotion/react": "^11.11.1",
     "@mantine/carousel": "^6.0.19",
     "@mantine/core": "^6.0.19",
     "@mantine/dates": "^6.0.19",
     "@mantine/dropzone": "^6.0.19",
-    "@mantine/ds": "^6.0.19",
     "@mantine/form": "^6.0.19",
     "@mantine/hooks": "^6.0.19",
     "@mantine/modals": "^6.0.19",
@@ -34,9 +34,8 @@
     "frappe-react-sdk": "^1.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-type-animation": "^3.1.0",
-    "socket.io-client": "^4.5.1",
-    "tabler": "^1.0.0-alpha.8"
+    "react-router-dom": "^6.15.0",
+    "socket.io-client": "^4.5.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -49,5 +48,8 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "main": "App.tsx",
+  "author": "jmg",
+  "license": "MIT"
 }

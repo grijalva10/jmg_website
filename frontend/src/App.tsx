@@ -1,37 +1,54 @@
 import { useState } from 'react'
+import { 
+  MantineProvider, 
+  AppShell,
+  Text,  
+  Navbar,
+  Header,
+  Footer,
+  Aside,
+  Text,
+  MediaQuery,
+  Burger,
+  useMantineTheme, } from '@mantine/core';
 import reactLogo from './assets/react.svg'
-import './App.css'
 import { FrappeProvider } from 'frappe-react-sdk'
+import HeaderResponsive  from './HeaderResponsive';
+import HeroImageRight  from './AppHero';
+import RealEstateSection from './RealEstateSection'
+
+const headerLinks = [
+  {
+    links: [
+      { link: '/about', label: 'Commercial Real Estate' },
+      { link: '/pricing', label: 'Baseball' },
+      { link: '/learn', label: 'Software Development' },
+      { link: '/community', label: 'Connect' },
+    ],
+  },
+];
+
+
+
 function App() {
-  const [count, setCount] = useState(0)
+  const theme = useMantineTheme();
+    // const [opened, setOpened] = useState(false);
 
   return (
-    <div className="App">
       <FrappeProvider>
-        <div>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + Frappe</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      </div>
+          <MantineProvider withGlobalStyles withNormalizeCSS theme={{  
+          colorScheme: 'dark', headings: {fontFamily: 'Marcellus, sans-serif'} }}>
+         <AppShell 
+         padding="0"
+         footer={ <Footer height={60} p="md">Application footer</Footer> }
+         header={<HeaderResponsive links={headerLinks[0].links} />}
+         > 
+    <HeroImageRight/> 
+    <RealEstateSection/>
+    </AppShell> 
+      
+    </MantineProvider>
       </FrappeProvider>
-    </div>
   )
 }
 
