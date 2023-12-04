@@ -1,6 +1,6 @@
 import {
   createStyles,
-  Navbar,
+  Navbar as MantineNavbar,
   TextInput,
   Code,
   UnstyledButton,
@@ -11,23 +11,33 @@ import {
   Burger,
   Tooltip,
   rem,
+  Avatar,
+  ScrollArea,
 } from '@mantine/core';
+
 import {
   IconBulb,
   IconUser,
+  IconSelector,
   IconCheckbox,
   IconSearch,
   IconPlus,
-  IconSelector,
-  IconLogout,
-  IconSwitchHorizontal,
+  IconSettings,
+  IconBell,
+  IconHelpHexagon,
+  IconTargetArrow,
+  IconUser,
+  IconBriefcase2,
+  IconBuildingSkyscraper,
+
 } from '@tabler/icons-react';
 import { UserButton } from '../UserButton/UserButton'; 
 import { useDisclosure } from '@mantine/hooks';
 
 const useStyles = createStyles((theme) => ({
-  navbar: {
+  MantineNavbar: {
     paddingTop: 0,
+    paddingRight: 0,
   },
 
   section: {
@@ -35,11 +45,12 @@ const useStyles = createStyles((theme) => ({
     marginRight: `calc(${theme.spacing.md} * -1)`,
     marginBottom: theme.spacing.md,
 
-    '&:not(:last-of-type)': {
-      borderBottom: `${rem(1)} solid ${
-        theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-      }`,
-    },
+   
+  },
+  headerSection: {
+    marginLeft: `calc(${theme.spacing.md} * -1)`,
+    marginRight: `calc(${theme.spacing.md} * -1)`,
+    marginBottom: theme.spacing.md,
   },
 
   searchCode: {
@@ -127,28 +138,53 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const links = [
-  { icon: IconBulb, label: 'Activity', notifications: 3 },
+  { icon: IconSearch, label: 'Search'},
   { icon: IconCheckbox, label: 'Tasks', notifications: 4 },
-  { icon: IconUser, label: 'Contacts' },
+   { icon: IconBell, label: 'Notifications', notifications: 4 },
+  
+];
+
+const workspace_links = [
+  { icon: IconBriefcase2, label: 'Companies'},
+  { icon: IconUser, label: 'People' },
+  { icon: IconBuildingSkyscraper, label: 'Properties' },
+   { icon: IconTargetArrow, label: 'Opportunities'},
+  
+];
+
+const footer_links = [
+   { icon: IconSettings, label: 'Settings' },
+  { icon: IconHelpHexagon, label: 'Support'},
+ 
+  
 ];
 
 const collections = [
   { emoji: '👍', label: 'Sales' },
   { emoji: '🚚', label: 'Deliveries' },
   { emoji: '💸', label: 'Discounts' },
-  { emoji: '💰', label: 'Profits' },
-  { emoji: '✨', label: 'Reports' },
-  { emoji: '🛒', label: 'Orders' },
-  { emoji: '📅', label: 'Events' },
-  { emoji: '🙈', label: 'Debts' },
-  { emoji: '💁‍♀️', label: 'Customers' },
 ];
 
-const  NavbarWithSearch = ({ data, hidden }: Props) => {
+
+const  Navbar = ({ data, hidden }: Props) => {
   const { classes } = useStyles();
   const [opened, { toggle, close }] = useDisclosure(false);
 
   const mainLinks = links.map((link) => (
+    <UnstyledButton key={link.label} className={classes.mainLink}>
+      <div className={classes.mainLinkInner}>
+        <link.icon size={20} className={classes.mainLinkIcon} stroke={1.5} />
+        <span>{link.label}</span>
+      </div>
+      {link.notifications && (
+        <Badge size="sm" variant="filled" className={classes.mainLinkBadge}>
+          {link.notifications}
+        </Badge>
+      )}
+    </UnstyledButton>
+  ));
+  
+  const workspaceLinks = workspace_links.map((link) => (
     <UnstyledButton key={link.label} className={classes.mainLink}>
       <div className={classes.mainLinkInner}>
         <link.icon size={20} className={classes.mainLinkIcon} stroke={1.5} />
@@ -173,42 +209,67 @@ const  NavbarWithSearch = ({ data, hidden }: Props) => {
       {collection.label}
     </a>
   ));
+  
+    const footerLinks = footer_links.map((link) => (
+    <UnstyledButton key={link.label} className={classes.mainLink}>
+      <div className={classes.mainLinkInner}>
+        <link.icon size={20} className={classes.mainLinkIcon} stroke={1.5} />
+        <span>{link.label}</span>
+      </div>
+      {link.notifications && (
+        <Badge size="sm" variant="filled" className={classes.mainLinkBadge}>
+          {link.notifications}
+        </Badge>
+      )}
+    </UnstyledButton>
+  ));
+
 
   return (
-    <Navbar hidden={hidden} withBorder={false} width={{ sm: 240 }} p="md" className={classes.navbar}>
-      <Navbar.Section className={classes.section}>
-      </Navbar.Section>
+    <MantineNavbar hidden={hidden} withBorder={false} width={{ sm: 240 }} p="md" className={classes.navbar}>
+      
+      <MantineNavbar.Section className={classes.headerSection}>
+          <UnstyledButton className={classes.mainLink}>
+              <div className={classes.mainLinkInner}>
+              <Group>
+              <Avatar size={20} color="blue">BH</Avatar>
+              <span>Bob Handsome</span>
+              </Group>
+              </div>
+              <IconSelector size="0.9rem" stroke={1.5} className={classes.mainLinkBadge} />
+          </UnstyledButton>
+      </MantineNavbar.Section>
 
-      <TextInput
-        placeholder="Search"
-        size="xs"
-        icon={<IconSearch size="0.8rem" stroke={1.5} />}
-        rightSectionWidth={70}
-        rightSection={<Code className={classes.searchCode}>Ctrl + K</Code>}
-        styles={{ rightSection: { pointerEvents: 'none' } }}
-        mb="sm"
-      />
-
-      <Navbar.Section className={classes.section}>
+      <MantineNavbar.Section className={classes.section}>
         <div className={classes.mainLinks}>{mainLinks}</div>
-      </Navbar.Section>
+      </MantineNavbar.Section>
 
-      <Navbar.Section className={classes.section}>
+      <MantineNavbar.Section className={classes.section}>
         <Group className={classes.collectionsHeader} position="apart">
           <Text size="xs" weight={500} color="dimmed">
-            Collections
+            FAVORITES
           </Text>
-          <Tooltip label="Create collection" withArrow position="right">
-            <ActionIcon variant="default" size={18}>
-              <IconPlus size="0.8rem" stroke={1.5} />
-            </ActionIcon>
-          </Tooltip>
         </Group>
+        <ScrollArea  h={150}>
         <div className={classes.collections}>{collectionLinks}</div>
-      </Navbar.Section> 
-      <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
-    </Navbar>
+        </ScrollArea >
+      </MantineNavbar.Section> 
+      
+            <MantineNavbar.Section grow className={classes.section}>
+        <Group className={classes.collectionsHeader} position="apart">
+          <Text size="xs" weight={500} color="dimmed">
+            WORKSPACE
+          </Text>
+        </Group>
+        <div className={classes.mainLinks}>{workspaceLinks}</div>
+      </MantineNavbar.Section> 
+      
+            <MantineNavbar.Section className={classes.section}>
+        <div className={classes.mainLinks}>{footerLinks}</div>
+      </MantineNavbar.Section>
+      
+    </MantineNavbar>
   );
 }
 
-export default NavbarWithSearch;
+export default Navbar;

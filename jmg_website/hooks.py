@@ -200,4 +200,4 @@ app_license = "MIT"
 #	"jmg_website.auth.validate"
 # ]
 
-website_route_rules = [{'from_route': '/dashboard/<path:app_path>/*', 'to_route': 'dashboard'}, {'from_route': '/builder/<path:app_path>/*', 'to_route': 'builder'}, {'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
+website_route_rules = [{'from_route': '/dashboard/<path:app_path>', 'to_route': 'dashboard'}, {'from_route': '/builder/<path:app_path>/*', 'to_route': 'builder'}, {'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]

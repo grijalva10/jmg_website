@@ -1,6 +1,7 @@
 MANIFEST.in
 README.md
 license.txt
+package.json
 requirements.txt
 setup.py
 jmg_website/__init__.py
@@ -14,5 +15,18 @@ jmg_website.egg-info/not-zip-safe
 jmg_website.egg-info/top_level.txt
 jmg_website/config/__init__.py
 jmg_website/jmg_website/__init__.py
+jmg_website/public/builder/index.html
+jmg_website/public/builder/vite.svg
+jmg_website/public/builder/assets/index-9046c9df.js
+jmg_website/public/dashboard/index.html
+jmg_website/public/dashboard/vite.svg
+jmg_website/public/dashboard/assets/index-793cf271.js
+jmg_website/public/frontend/index.html
+jmg_website/public/frontend/vite.svg
+jmg_website/public/frontend/assets/index-36a6c146.js
 jmg_website/templates/__init__.py
 jmg_website/templates/pages/__init__.py
+jmg_website/www/__init__.py
+jmg_website/www/builder.html
+jmg_website/www/dashboard.html
+jmg_website/www/frontend.html
